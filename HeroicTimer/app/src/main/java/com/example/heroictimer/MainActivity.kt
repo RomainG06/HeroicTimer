@@ -10,18 +10,36 @@ class MainActivity : AppCompatActivity() {
     var timerStarted = false
     val timer: Timer = Timer()
     var stopStartButton: Button? = null
+    var themeButton: Button? = null
+    var settingsButton: Button? = null
     var timerTask: TimerTask? = null
     var time = 30.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        stopStartButton = findViewById(R.id.button_launch);
+        stopStartButton = findViewById(R.id.button_launch)
+        themeButton = findViewById(R.id.button_theme)
+        settingsButton = findViewById(R.id.button_settings)
 
         stopStartButton?.text = "09:00"
         stopStartButton?.setOnClickListener {
-            startTimer()
-            // Do something in response to button click
+            if (!timerStarted) {
+                startTimer()
+                timerStarted = true
+            }
+            else {
+                timerStarted = false
+                timerTask?.cancel()
+            }
+        }
+
+        themeButton?.setOnClickListener{
+            // Put navigation to ThemeFragment
+        }
+
+        settingsButton?.setOnClickListener {
+            // Put navigation to SettingsFragment
         }
     }
 
