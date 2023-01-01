@@ -1,8 +1,11 @@
 package com.example.heroictimer
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import java.util.*
 
@@ -12,6 +15,7 @@ class MainActivity : AppCompatActivity() {
     var stopStartButton: Button? = null
     var themeButton: Button? = null
     var settingsButton: Button? = null
+    var restartButton: ImageButton? = null
     var timerTask: TimerTask? = null
     var time = 30.0
 
@@ -21,8 +25,9 @@ class MainActivity : AppCompatActivity() {
         stopStartButton = findViewById(R.id.button_launch)
         themeButton = findViewById(R.id.button_theme)
         settingsButton = findViewById(R.id.button_settings)
+        restartButton = findViewById(R.id.button_restart)
 
-        stopStartButton?.text = "09:00"
+        stopStartButton?.text = time.toString()
         stopStartButton?.setOnClickListener {
             if (!timerStarted) {
                 startTimer()
@@ -41,11 +46,15 @@ class MainActivity : AppCompatActivity() {
         settingsButton?.setOnClickListener {
             // Put navigation to SettingsFragment
         }
+
+        restartButton?.setOnClickListener {
+            timerStarted = false
+            timerTask?.cancel()
+            time = 30.00
+            stopStartButton?.text = time.toString()
+        }
     }
 
-    fun launchstopTimer(view: View) {
-
-    }
     private fun startTimer() {
         timerTask = object : TimerTask() {
             override fun run() {

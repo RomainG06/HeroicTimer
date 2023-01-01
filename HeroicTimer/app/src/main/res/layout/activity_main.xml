@@ -17,6 +17,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/button_restart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/ic_baseline_autorenew_24" />
 
         <Button
             android:id="@+id/button_settings"
